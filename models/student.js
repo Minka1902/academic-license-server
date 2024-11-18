@@ -19,7 +19,8 @@ const studentSchema = new mongoose.Schema({
     name: {
         type: String,
         minLength: 2,
-        maxLength: 200,
+        required: true,
+        maxLength: 300,
     },
 });
 
