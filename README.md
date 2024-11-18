@@ -1,1 +1,1 @@
-This dashboard app is used by Geomage empyees for checking if and when was every source was active 
+This app lets every professor the ability to get a key for G-Platform and G-Viewer. and each student gets hes/r key to their mail
