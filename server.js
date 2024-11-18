@@ -7,14 +7,14 @@ const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middleware/logger');
 
 // get Port, file path, folderName and mongoURI
-const { PORT = 4000,
+const { PORT = 4001,
     folderName = 'academic-license',
     mongoURI = "mongodb+srv://minkascharff:0kXcALRVpFwLoayY@cluster.pphl1c2.mongodb.net/academyLicense?retryWrites=true&w=majority" } = process.env;
 const app = express();
 
 mongoose.connect(mongoURI)
     .catch((err) => {
-        console.log(err);
+        console.error(err);
     });
 
 require('dotenv').config();
@@ -25,7 +25,7 @@ app.use(cors());
 
 app.use(bodyParser.json()); // parse application/json
 
-app.use(requestLogger);     // enabling the request loggeracademic-license
+app.use(requestLogger);     // enabling the request
 
 app.use(require('./routes/users'));
 app.use(require('./routes/students'));
