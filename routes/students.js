@@ -1,14 +1,22 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const { createStudent, getStudent } = require('../controllers/students');
+const { createStudents, getStudent, deleteStudent } = require('../controllers/students');
 
-router.post('/add-student', celebrate({
+router.post('/add-students', celebrate({
     body: Joi.object().keys({
-        email: Joi.string().email().required(),
-        key: Joi.string().required(),
-        name: Joi.string().required().min(2).max(200),
+        students: Joi.array().required().items(Joi.object().keys({
+            email: Joi.string().email().required(),
+            key: Joi.string().required(),
+            name: Joi.string().required().min(2).max(300),
+        })),
     }),
-}), createStudent);
+}), createStudents);
+
+router.delete('/delete-student/:email', celebrate({
+    params: Joi.object().keys({
+        email: Joi.string().email().required(),
+    })
+}), deleteStudent);
 
 router.get('/get-student/:email', celebrate({
     params: Joi.object({
